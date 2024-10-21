@@ -48,6 +48,7 @@ body{
 
 .nav-logo p:hover{
     color: #f79b46;
+    color: #a9a9a9;
 }
 
 .link:hover, .active{
@@ -101,7 +102,7 @@ body{
     position: absolute;
     right: -520px;
     width: 500px;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
     transition: .5s ease-in-out;
@@ -152,6 +153,8 @@ header{
     color:black;
     font-weight: bold;
 }
+
+
 
 .input-box i{
     position: relative;
