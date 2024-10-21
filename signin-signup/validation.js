@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Get the form elements
     const emailInput = document.getElementById("email");
     const passwordInput = document.getElementById("password");
 
@@ -9,30 +8,24 @@ document.addEventListener("DOMContentLoaded", function() {
     const signInButton = document.getElementById("login-form");
     const signUpButton = document.getElementById("register-form");
 
-    // Add event listener to the submit button
     signInButton.addEventListener("click", function(event) {
     
-        // Clear any previous error messages
         clearErrors();
 
         event.preventDefault();
 
 
-        // Get input values
         const email = emailInput.value;
         const password = passwordInput.value;
 
-
-        document.getElementById("email").value = "";
-        document.getElementById("password").value = "";
-
         let isValid = true;
 
-        // Email validation regex
+        //email regex
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!emailRegex.test(email)) {
             showError(emailInput, "Invalid email format. Example: user@example.com");
             isValid = false;
+            document.getElementById("email").value = "";
         }
 
         // Password validation regex (At least 8 characters, 1 uppercase, 1 lowercase, 1 digit, 1 special character)
@@ -40,35 +33,32 @@ document.addEventListener("DOMContentLoaded", function() {
         if (!passwordRegex.test(password)) {
             showError(passwordInput, "Password must be at least 8 characters long, with 1 uppercase, 1 lowercase, 1 number, and 1 special character.");
             isValid = false;
+            document.getElementById("password").value = "";
         }
 
-        // If the form is valid, show a success message (or you can proceed with form submission)
+
         if (isValid) {
             clearErrors();
         }
     });
 
     signUpButton.addEventListener("click", function(event) {
-        // Prevent form submission
 
         clearErrors();
 
         event.preventDefault();
 
-        // Get input values
+
         const email = emailRegInput.value;
         const password = passwordRegInput.value;
 
-        document.getElementById("email-reg").value = "";
-        document.getElementById("password-reg").value = "";
-
         let isValid = true;
 
-        // Email validation regex
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!emailRegex.test(email)) {
             showError(emailRegInput, "Invalid email format. Example: user@example.com");
             isValid = false;
+            document.getElementById("email-reg").value = "";
         }
 
         // Password validation regex (At least 8 characters, 1 uppercase, 1 lowercase, 1 digit, 1 special character)
@@ -76,14 +66,13 @@ document.addEventListener("DOMContentLoaded", function() {
         if (!passwordRegex.test(password)) {
             showError(passwordRegInput, "Password must be at least 8 characters long, with 1 uppercase, 1 lowercase, 1 number, and 1 special character.");
             isValid = false;
+            document.getElementById("password-reg").value = "";
         }
 
 
-        // If the form is valid, show a success message (or you can proceed with form submission)
+        
         if (isValid) {
             clearErrors();
-            // You can proceed with form submission here if needed
-            // document.getElementById("myForm").submit();
         }
     });
 
