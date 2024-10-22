@@ -48,6 +48,7 @@ body{
 
 .nav-logo p:hover{
     color: #394157;
+    transition: 0.8s ease;
 }
 
 .link:hover, .active{
