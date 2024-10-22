@@ -10,9 +10,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     signInForm.addEventListener("submit", function(event) {
     
-        clearErrors();
-
         event.preventDefault();
+        clearErrors();
 
 
         const email = emailInput.value;
