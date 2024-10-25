@@ -31,51 +31,54 @@ function truncateText(text, maxLength) {
 }
 
 function renderHomePageBlogs(searchQuery = '') {
-    const blogs = getAllBlogs(searchQuery);
-    console.log(searchQuery);
+
+    if(searchQuery.length >= 2 || searchQuery.length == 0){
+        const blogs = getAllBlogs(searchQuery);
 
 
-    if (blogs.length === 0) {
-        blogGrid.innerHTML = `
-            <div class="empty-state">
-                <h2>${searchQuery ? 'No matching blog posts found' : 'No Blog Posts Yet'}</h2>
-                <p>${searchQuery ? 'Try a different search term' : 'Create your first blog post in Travel or Food sections!'}</p>
-            </div>
-        `;
-        return;
+        if (blogs.length === 0) {
+            blogGrid.innerHTML = `
+                <div class="empty-state">
+                    <h2>${searchQuery ? 'No matching blog posts found' : 'No Blog Posts Yet'}</h2>
+                    <p>${searchQuery ? 'Try a different search term' : 'Create your first blog post in Travel or Food sections!'}</p>
+                </div>
+            `;
+            return;
+        }
+
+        // Inside the renderHomePageBlogs function, update the blog-card template
+        blogGrid.innerHTML = blogs.map(blog => `
+            <article class="blog-card">
+                <img src="${blog.imageUrl}" alt="${blog.title}" class="blog-image">
+                <div class="blog-content">
+                    <h2 class="blog-title">${blog.title}</h2>
+                    <div class="blog-metadata">
+                        <span class="blog-category">${blog.uploadedBy} | 
+                            ${blog.location ? 'Travel' : 'Food'} Blog
+                        </span>
+                        <span class="blog-date">${new Date(blog.date).toLocaleDateString()}</span>
+                    </div>
+                    
+                    <p class="blog-text">${truncateText(blog.content, CONTENT_PREVIEW_LENGTH)}</p>
+                    
+                    <div class="tags">
+                        ${blog.tags.map(tag => `
+                            <span class="tag">${tag}</span>
+                        `).join('')}
+                    </div>
+                    
+                    <div class="blog-actions">
+                        <a href="#" class="read-more-btn" 
+                        data-category="${blog.location ? 'travel' : 'food'}"
+                        onclick="navigateToBlogSection(event)">
+                            Read Full Post
+                        </a>
+                    </div>
+                </div>
+            </article>
+        `).join('');
     }
-
-    // Inside the renderHomePageBlogs function, update the blog-card template
-    blogGrid.innerHTML = blogs.map(blog => `
-        <article class="blog-card">
-            <img src="${blog.imageUrl}" alt="${blog.title}" class="blog-image">
-            <div class="blog-content">
-                <h2 class="blog-title">${blog.title}</h2>
-                <div class="blog-metadata">
-                    <span class="blog-category">${blog.uploadedBy} | 
-                        ${blog.location ? 'Travel' : 'Food'} Blog
-                    </span>
-                    <span class="blog-date">${new Date(blog.date).toLocaleDateString()}</span>
-                </div>
-                
-                <p class="blog-text">${truncateText(blog.content, CONTENT_PREVIEW_LENGTH)}</p>
-                
-                <div class="tags">
-                    ${blog.tags.map(tag => `
-                        <span class="tag">${tag}</span>
-                    `).join('')}
-                </div>
-                
-                <div class="blog-actions">
-                    <a href="#" class="read-more-btn" 
-                    data-category="${blog.location ? 'travel' : 'food'}"
-                    onclick="navigateToBlogSection(event)">
-                        Read Full Post
-                    </a>
-                </div>
-            </div>
-        </article>
-    `).join('');
+    
 }
 
 function handleSearch(event) {
