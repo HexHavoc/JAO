@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
+
 /* Reset and base styles */
 * {
     margin: 0;
@@ -29,13 +32,13 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
-    margin-left: 28rem;
-    font-weight: bold;
+    margin-left: 26rem;
 }
 
 .header h1 {
-    font-size: 2rem;
-    color: #2a20f2;
+    font-size: 2.5rem;
+    color: orange;
+    font-weight: 900;
 }
 
 .header button{
@@ -548,4 +551,76 @@ body {
 .blog-text {
     line-height: 1.6;
     margin: 0;
+}
+
+.container {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.nav-bar header {
+  background: #55d6aa;
+  width: 20%;
+  padding: 10px 0;
+  position:absolute;
+  top:0; right:0; 
+  margin: 2rem 1rem 1rem 0rem;
+}
+
+.nav-bar header::after {
+  content: '';
+  display: table;   
+  clear: both;
+}
+
+.logo {
+  float: left;
+  padding: 10px 0;
+}
+
+.nav-bar nav {
+  float: right;
+  margin-right: 10px; /* To add a bit of space from the right edge */
+}
+
+.nav-bar nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+}
+
+.nav-bar nav li {
+  display: inline-block;
+  margin-left: 30px;
+  padding-top: 10px;
+  position: relative;
+}
+
+
+.nav-bar nav a {
+  color: black;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.nav-bar nav a:hover {
+    color: #444;
+}
+
+.nav-bar nav a::before {
+  content: '';
+  display: block;
+  height: 5px;
+  background-color: #444;
+  position: absolute;
+  top: 0;
+  width: 0%;
+  transition: all ease-in-out 250ms;
+}
+
+.nav-bar nav a:hover::before {
+  width: 100%;
 }

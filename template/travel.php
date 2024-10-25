@@ -12,6 +12,21 @@ include "../profile/profileDisplay.php";
     <link rel="stylesheet" href="travel.css">
 </head>
 <body>
+    <div class="nav-bar">
+        <header>
+            <div class="container">
+            <h1 class="logo"></h1>
+
+            <nav>
+                <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Travel</a></li>
+                <li><a href="food.html">Food</a></li>
+                </ul>
+            </nav>
+            </div>
+        </header>
+    </div>
     <div class="container">
         <header class="header">
             <h1>JAO TRAVEL BLOG</h1>
