@@ -1,9 +1,4 @@
 /* POPPINS FONT */
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-
-
-
-/* POPPINS FONT */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 *{  
@@ -130,6 +125,7 @@ header{
     display: flex;
     gap: 10px;
 }
+
 .input-field{
     font-size: 15px;
     background: rgba(255, 255, 255, 0.2);
@@ -239,6 +235,7 @@ header{
         padding: 0 20px;
     }
     .register-container .two-forms{
+        width: 100%;
         flex-direction: column;
         gap: 0;
     }
@@ -251,8 +248,17 @@ header{
   margin-bottom: -1rem;
 }
 
+
+
 .registerForm{
     width: 100%;
     display: flex;
     gap: 20px; 
 }
+
+
+.registerForm .input-box { 
+    width: calc(100% - 4px); 
+}
+
+

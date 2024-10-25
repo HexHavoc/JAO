@@ -5,22 +5,22 @@ ini_set('display_errors', 1);
 try {
     require "connection.php";
 
-    // Validate that email and password are set
-    if (!isset($_POST['email']) || !isset($_POST['password'])) {
-        throw new Exception('Email and password are required');
+    // Validate that username and password are set
+    if (!isset($_POST['username']) || !isset($_POST['password'])) {
+        throw new Exception('Username and password are required');
     }
 
-    // Sanitize email input
-    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    // Sanitize username input
+    $username = $_POST['username'];
 
     // Prepare statement to prevent SQL injection
-    $stmt = $mysqli->prepare("SELECT Email, Password FROM signups WHERE Email = ?");
+    $stmt = $mysqli->prepare("SELECT Username, Password FROM signups WHERE Username = ?");
     if (!$stmt) {
         throw new Exception('Database prepare failed: ' . $mysqli->error);
     }
 
     // Bind parameters and execute
-    $stmt->bind_param("s", $email);
+    $stmt->bind_param("s", $username);
     if (!$stmt->execute()) {
         throw new Exception('Database query failed: ' . $stmt->error);
     }
@@ -33,11 +33,11 @@ try {
         // Verify password using password_verify() - assumes password is hashed in database
         if ($_POST['password']===$user['Password']){
             session_start();
-            $_SESSION['email'] = $user['Email'];
+            $_SESSION['username'] = $user['Username'];
             $_SESSION['logged_in'] = true;
             
             // Return success response
-            header('Location: template/template.html');
+            header('Location: template/travel.html');
         } else {
             throw new Exception('Invalid credentials');
         }
