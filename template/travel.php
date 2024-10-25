@@ -30,8 +30,8 @@ include "../profile/profileDisplay.php";
     <div class="container">
         <header class="header">
             <h1>JAO TRAVEL BLOG</h1>
-            <button id="newBlogBtn">New Blog Post</button>
         </header>
+        <button id="newBlogBtn">Create Blog Post</button>
 
 
         <form id="blogForm">
