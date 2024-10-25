@@ -43,6 +43,10 @@ include "../profile/profileDisplay.php";
         <form id="blogForm">
             <input type="text" id="title" placeholder="Blog Title" required>
             <textarea id="content" placeholder="Write your blog content here..." required></textarea>
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" required placeholder="Enter the location">
+            </div>
             <div class="image-upload-container">
                 <input type="file" id="image" accept="image/*" required>
                 <img id="imagePreview" style="display: none;">
