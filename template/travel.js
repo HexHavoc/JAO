@@ -30,7 +30,7 @@ function getAllBlogs(searchQuery = '') {
     return combinedBlogs;
 }
 
-function renderHomePageBlogs(searchQuery = '') {
+function searchRenderTravel(searchQuery = '') {
     const blogs = getAllBlogs(searchQuery);
     const loggedInUser = getLoggedInUser();
 
@@ -51,6 +51,7 @@ function renderHomePageBlogs(searchQuery = '') {
             <div class="blog-content">
                 <h2 class="blog-title">${blog.title}</h2>
                 <div class="blog-metadata">
+                    <span class="blog-location">📍 ${blog.location}</span>
                     <span class="blog-author">Posted by: ${blog.uploadedBy}</span>
                     <span class="blog-date">${new Date(blog.date).toLocaleDateString()}</span>
                 </div>
@@ -153,7 +154,7 @@ function renderHomePageBlogs(searchQuery = '') {
 
 function handleSearch(event) {
     const searchQuery = event.target.value.trim();
-    renderHomePageBlogs(searchQuery);
+    searchRenderTravel(searchQuery);
 }
 
 function navigateToBlogSection(event) {
@@ -170,7 +171,7 @@ function navigateToBlogSection(event) {
 
 // Initialize blogs and search functionality on page load
 document.addEventListener('DOMContentLoaded', () => {
-    renderHomePageBlogs();
+    searchRenderTravel();
     
     // Add search input event listener
     if (searchInput) {
@@ -284,7 +285,7 @@ async function handleSubmit(e) {
         content: document.getElementById('content').value,
         imageUrl: imagePreview.src,
         uploadedBy: username,
-        location: document.getElementById('location').value, // Add this line
+        location: document.getElementById('location').value,
         tags: document.getElementById('tags').value
             .split(',')
             .map(tag => tag.trim())
@@ -412,11 +413,10 @@ function showNotificationSuccess(message, type = 'success') {
     notification.textContent = message;
     
     document.body.appendChild(notification);
-    
-    // Remove notification after 3 seconds
+
     setTimeout(() => {
         notification.remove();
-    }, 3000);
+    }, 1500);
 }
 
 function showNotificationError(message, type = 'error') {
@@ -429,7 +429,7 @@ function showNotificationError(message, type = 'error') {
     // Remove notification after 3 seconds
     setTimeout(() => {
         notification.remove();
-    }, 3000);
+    }, 1500);
 }
 
 function truncateText(text, maxLength) {
@@ -458,10 +458,11 @@ function renderBlogs() {
             <div class="blog-content">
                 <h2 class="blog-title">${blog.title}</h2>
                 <div class="blog-metadata">
-                    <span class="blog-location">📍 ${blog.location}</span>  // Add this line
+                    <span class="blog-location">📍 ${blog.location}</span>
                     <span class="blog-author">Posted by: ${blog.uploadedBy}</span>
                     <span class="blog-date">${new Date(blog.date).toLocaleDateString()}</span>
                 </div>
+                
                 <div class="blog-text-container" id="blogContent_${blog.id}">
                     <p class="blog-text">${truncateText(blog.content, CONTENT_PREVIEW_LENGTH)}</p>
                     ${blog.content.length > CONTENT_PREVIEW_LENGTH ? `
@@ -500,7 +501,6 @@ function renderBlogs() {
                         <span class="tag">${tag}</span>
                     `).join('')}
                 </div>
-                
                 
                 <!-- Comments Section -->
                 <div class="comments-section">
