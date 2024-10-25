@@ -30,7 +30,7 @@ body {
     font-size: 3.5rem;
     color: yellow;
     font-weight: 900;
-    margin-left: 7rem;
+    margin-left: 41rem;
     margin-bottom: 10rem;
     margin-top: -7.5rem;
 }
@@ -160,7 +160,7 @@ body {
 /* Blog Grid */
 #blogGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
 }
@@ -181,12 +181,13 @@ body {
 
 .blog-image {
     width: 100%;
-    height: 200px;
+    height: 300px;
     object-fit: cover;
 }
 
 .blog-date{
     margin-right: -1rem;
+    font-size: 1rem;
 }
 
 
@@ -201,7 +202,7 @@ body {
     margin-bottom: 0.5rem;
 }
 
-.blog-food-source{
+.blog-foodSource{
     margin-left: -1.5rem;
     font-size: 1rem;
 }
@@ -470,7 +471,6 @@ body {
     font-weight: 600;
     color: #666;
     font-size: 1rem;
-    margin-right: 1rem;
 }
 
 .comment-author {
@@ -552,19 +552,27 @@ body {
     margin: 0;
 }
 
+
+.nav-bar{
+    border-radius: rem;
+}
+
+
 .container {
 	width: 80%;
 	margin: 0 auto;
 }
 
+
 .nav-bar header {
-  background: #55d6aa;
-  width: 20%;
-  padding: 10px 0;
-  position:absolute;
-  top:0; right:0; 
-  margin: 2rem 1rem 1rem 0rem;
-}
+    background: #55d6aa;
+    width: 20%;
+    padding: 10px 0;
+    position:absolute;
+    top:0; right:0; 
+    margin: 2rem 1rem 1rem 10rem;
+    border-radius: 2rem;
+  }
 
 .nav-bar header::after {
   content: '';
@@ -573,36 +581,37 @@ body {
 }
 
 .logo {
-  float: left;
-  padding: 10px 0;
+float: left;
+padding: 10px 0;
 }
 
 .nav-bar nav {
-  float: right;
-  margin-right: 10px; /* To add a bit of space from the right edge */
+float: right;
+margin-right: 20px; /* To add a bit of space from the right edge */
 }
 
 .nav-bar nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+margin: 0;
+padding: 0;
+list-style: none;
 
 }
 
 .nav-bar nav li {
-  display: inline-block;
-  margin-left: 30px;
-  padding-top: 10px;
-  position: relative;
+display: inline-block;
+margin-left: 30px;
+padding-top: 10px;
+position: relative;
 }
 
 
 .nav-bar nav a {
-  color: black;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-size: 1rem;
-  font-weight: bold;
+color: black;
+text-decoration: none;
+text-transform: uppercase;
+font-size: 1rem;
+font-weight: bold;
+margin-right: 1rem;
 }
 
 .nav-bar nav a:hover {
@@ -610,18 +619,25 @@ body {
 }
 
 .nav-bar nav a::before {
-  content: '';
-  display: block;
-  height: 5px;
-  background-color: #444;
-  position: absolute;
-  top: 0;
-  width: 0%;
-  transition: all ease-in-out 250ms;
+content: '';
+display: block;
+height: 5px;
+background-color: #444;
+position: absolute;
+top: 0;
+width: 0%;
+transition: all ease-in-out 250ms;
 }
 
 .nav-bar nav a:hover::before {
-  width: 100%;
+width: 100%;
+}
+
+
+.group-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .group {
@@ -920,7 +936,7 @@ body.modal-open {
     cursor: pointer;
     font-size: 0.9rem;
     transition: background-color 0.2s ease;
-    margin-left: 7rem;
+    margin-left: 20rem;
 }
 
 .delete-btn:hover {
@@ -929,4 +945,39 @@ body.modal-open {
 
 #modalAuthor,#modalLocation,#modalDate{
     font-size: 1rem;
+}
+
+
+.container {
+width: 100%;
+margin: 0;
+padding-left: 2rem;
+}
+
+#newBlogBtn {
+margin: 1rem 0 2rem 0;
+}
+
+#blogGrid {
+grid-template-columns: repeat(3, minmax(565px, 1fr));
+gap: 2rem;
+margin-top: 2rem;
+max-width: 1200px;
+}
+
+.group {
+margin: 1rem 0 4rem 0;
+max-width: 500px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+.container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+#blogGrid {
+    grid-template-columns: 1fr;
+}
 }
