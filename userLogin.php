@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
+session_start();
 try {
     require "connection.php";
 
@@ -10,7 +10,6 @@ try {
         throw new Exception('Username and password are required');
     }
 
-    // Sanitize username input
     $username = $_POST['username'];
 
     // Prepare statement to prevent SQL injection
@@ -30,14 +29,12 @@ try {
     $user = $result->fetch_assoc();
 
     if ($user) {
-        // Verify password using password_verify() - assumes password is hashed in database
         if ($_POST['password']===$user['Password']){
-            session_start();
             $_SESSION['username'] = $user['Username'];
             $_SESSION['logged_in'] = true;
             
             // Return success response
-            header('Location: template/travel.html');
+            header('Location: template/travel.php');
         } else {
             throw new Exception('Invalid credentials');
         }
