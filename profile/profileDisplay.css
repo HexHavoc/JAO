@@ -15,6 +15,7 @@ h1, h2 {
   width: 20%;
   overflow: hidden; 
   background-color: #0a68b0;
+  border-radius: 2rem;
 }
 .topmenu a {
   float: left;
