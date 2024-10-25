@@ -5,17 +5,22 @@ const USER_KEY = 'loggedInUser';
 const CONTENT_PREVIEW_LENGTH = 150;
 
 const blogGrid = document.getElementById('blogGrid');
+const searchInput = document.getElementById('blogSearch');
 
-function getAllBlogs() {
+function getAllBlogs(searchQuery = '') {
     // Retrieve blogs from both travel and food localStorage
     const travelBlogs = JSON.parse(localStorage.getItem(TRAVEL_STORAGE_KEY) || '[]');
     const foodBlogs = JSON.parse(localStorage.getItem(FOOD_STORAGE_KEY) || '[]');
     
-    // Combine and sort blogs by date (most recent first)
+    // Combine and filter blogs based on search query
     const combinedBlogs = [...travelBlogs, ...foodBlogs]
+        .filter(blog => {
+            if (!searchQuery) return true;
+            return blog.title.toLowerCase().includes(searchQuery.toLowerCase());
+        })
         .sort((a, b) => new Date(b.date) - new Date(a.date))
-        // Limit to the first 6 blogs
-        .slice(0, 6);
+        // Limit to the first 6 blogs only if no search query
+        .slice(0, searchQuery ? undefined : 6);
     
     return combinedBlogs;
 }
@@ -25,14 +30,15 @@ function truncateText(text, maxLength) {
     return text.slice(0, maxLength).trim() + '...';
 }
 
-function renderHomePageBlogs() {
-    const blogs = getAllBlogs();
+function renderHomePageBlogs(searchQuery = '') {
+    const blogs = getAllBlogs(searchQuery);
+
 
     if (blogs.length === 0) {
         blogGrid.innerHTML = `
             <div class="empty-state">
-                <h2>No Blog Posts Yet</h2>
-                <p>Create your first blog post in Travel or Food sections!</p>
+                <h2>${searchQuery ? 'No matching blog posts found' : 'No Blog Posts Yet'}</h2>
+                <p>${searchQuery ? 'Try a different search term' : 'Create your first blog post in Travel or Food sections!'}</p>
             </div>
         `;
         return;
@@ -70,6 +76,11 @@ function renderHomePageBlogs() {
     `).join('');
 }
 
+function handleSearch(event) {
+    const searchQuery = event.target.value.trim();
+    renderHomePageBlogs(searchQuery);
+}
+
 function navigateToBlogSection(event) {
     event.preventDefault();
     const category = event.target.getAttribute('data-category');
@@ -82,5 +93,12 @@ function navigateToBlogSection(event) {
     }
 }
 
-// Initialize blogs on page load
-document.addEventListener('DOMContentLoaded', renderHomePageBlogs);
+// Initialize blogs and search functionality on page load
+document.addEventListener('DOMContentLoaded', () => {
+    renderHomePageBlogs();
+    
+    // Add search input event listener
+    if (searchInput) {
+        searchInput.addEventListener('input', handleSearch);
+    }
+});
