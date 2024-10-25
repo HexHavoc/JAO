@@ -12,9 +12,6 @@ try {
 
     // Sanitize email input
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        throw new Exception('Invalid email format');
-    }
 
     // Prepare statement to prevent SQL injection
     $stmt = $mysqli->prepare("SELECT Email, Password FROM signups WHERE Email = ?");
@@ -40,7 +37,7 @@ try {
             $_SESSION['logged_in'] = true;
             
             // Return success response
-            header('Location: template/index.html');
+            header('Location: template/template.html');
         } else {
             throw new Exception('Invalid credentials');
         }
