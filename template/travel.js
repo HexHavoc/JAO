@@ -11,6 +11,174 @@ const CONTENT_PREVIEW_LENGTH = 150;
 const STORAGE_KEY = 'travelBlogPosts';
 const USER_KEY = 'loggedInUser';  // Key for storing logged-in user
 
+const searchInput = document.getElementById('blogSearch');
+
+function getAllBlogs(searchQuery = '') {
+    // Retrieve blogs from both travel and food localStorage
+    const travelBlogs = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    
+    // Combine and filter blogs based on search query
+    const combinedBlogs = [...travelBlogs]
+        .filter(blog => {
+            if (!searchQuery) return true;
+            return blog.title.toLowerCase().includes(searchQuery.toLowerCase());
+        })
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        // Limit to the first 6 blogs only if no search query
+        .slice(0, searchQuery ? undefined : 6);
+    
+    return combinedBlogs;
+}
+
+function renderHomePageBlogs(searchQuery = '') {
+    const blogs = getAllBlogs(searchQuery);
+    const loggedInUser = getLoggedInUser();
+
+
+    if (blogs.length === 0) {
+        blogGrid.innerHTML = `
+            <div class="empty-state">
+                <h2>${searchQuery ? 'No matching blog posts found' : 'No Blog Posts Yet'}</h2>
+                <p>${searchQuery ? 'Try a different search term' : 'Create your first blog post in Travel section!'}</p>
+            </div>
+        `;
+        return;
+    }
+
+    blogGrid.innerHTML = blogs.map(blog => `
+        <article class="blog-card">
+            <img src="${blog.imageUrl}" alt="${blog.title}" class="blog-image">
+            <div class="blog-content">
+                <h2 class="blog-title">${blog.title}</h2>
+                <div class="blog-metadata">
+                    <span class="blog-author">Posted by: ${blog.uploadedBy}</span>
+                    <span class="blog-date">${new Date(blog.date).toLocaleDateString()}</span>
+                </div>
+                
+                <div class="blog-text-container" id="blogContent_${blog.id}">
+                    <p class="blog-text">${truncateText(blog.content, CONTENT_PREVIEW_LENGTH)}</p>
+                    ${blog.content.length > CONTENT_PREVIEW_LENGTH ? `
+                        <div class="load-more-container">
+                            <button 
+                                onclick="toggleContent(${blog.id})" 
+                                class="load-more-btn" 
+                                id="loadMoreBtn_${blog.id}"
+                            >
+                                Read More
+                            </button>
+                        </div>
+                        <div class="full-content" id="fullContent_${blog.id}" style="display: none;">
+                            <p class="blog-text">${blog.content}</p>
+                            <div class="load-more-container">
+                                <button 
+                                    onclick="toggleContent(${blog.id})" 
+                                    class="load-more-btn"
+                                >
+                                    Show Less
+                                </button>
+                            </div>
+                        </div>
+                    ` : ''}
+                </div>
+
+                ${blog.uploadedBy === loggedInUser ? `
+                    <div class="blog-actions">
+                        <button onclick="deleteBlog(${blog.id})" class="delete-btn">
+                            Delete
+                        </button>
+                    </div>
+                ` : ''}
+                <div class="tags">
+                    ${blog.tags.map(tag => `
+                        <span class="tag">${tag}</span>
+                    `).join('')}
+                </div>
+                
+                <!-- Comments Section -->
+                <div class="comments-section">
+                    <h3>Comments (${blog.comments.length})</h3>
+                    ${loggedInUser ? `
+                        <div class="comment-form">
+                            <textarea 
+                                id="commentText_${blog.id}" 
+                                placeholder="Write a comment..." 
+                                class="comment-input"
+                            ></textarea>
+                            <button 
+                                onclick="addComment(${blog.id}, document.getElementById('commentText_${blog.id}').value); document.getElementById('commentText_${blog.id}').value = '';"
+                                class="comment-btn"
+                            >
+                                Add Comment
+                            </button>
+                        </div>
+                    ` : `
+                        <p class="login-prompt">Please <a href="login.html">log in</a> to comment</p>
+                    `}
+                    <div class="comments-list">
+                        ${blog.comments.map(comment => `
+                            <div class="comment">
+                                <div class="comment-header">
+                                    <span class="comment-author">${comment.author}</span>
+                                </div>
+                                <p class="comment-text">${comment.text}</p>
+                                <div class="comment-metadata">
+                                    <span class="comment-date">
+                                        ${new Date(comment.date).toLocaleDateString()}
+                                    </span>
+                                    <div class="comment-actions">
+                                        <button 
+                                            onclick="likeComment(${blog.id}, ${comment.id})"
+                                            class="like-btn ${hasUserLikedComment(blog.id, comment.id) ? 'liked' : ''}"
+                                        >
+                                            ${hasUserLikedComment(blog.id, comment.id) ? '❤️' : '🤍'} ${comment.likes}
+                                        </button>
+                                        ${comment.author === loggedInUser ? `
+                                            <button 
+                                                onclick="deleteComment(${blog.id}, ${comment.id})"
+                                                class="delete-comment-btn"
+                                            >
+                                                Delete
+                                            </button>
+                                        ` : ''}
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        </article>
+    `).join('');
+}
+
+function handleSearch(event) {
+    const searchQuery = event.target.value.trim();
+    renderHomePageBlogs(searchQuery);
+}
+
+function navigateToBlogSection(event) {
+    event.preventDefault();
+    const category = event.target.getAttribute('data-category');
+    
+    // Navigate to the appropriate blog section
+    if (category === 'travel') {
+        window.location.href = 'travel.php';
+    } else {
+        window.location.href = 'food.php';
+    }
+}
+
+// Initialize blogs and search functionality on page load
+document.addEventListener('DOMContentLoaded', () => {
+    renderHomePageBlogs();
+    
+    // Add search input event listener
+    if (searchInput) {
+        searchInput.addEventListener('input', handleSearch);
+    }
+});
+
+
 // Initialize blogs from localStorage or empty array
 let blogs = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
 
@@ -224,14 +392,12 @@ function likeComment(blogId, commentId) {
                 localStorage.setItem(likeKey, 'true');
                 saveToLocalStorage();
                 renderBlogs();
-                showNotificationSuccess('Comment liked!');
             } else {
                 // User has already liked this comment
                 comment.likes--;
                 localStorage.removeItem(likeKey);
                 saveToLocalStorage();
                 renderBlogs();
-                showNotificationSuccess('Like removed!');
             }
         }
     }
