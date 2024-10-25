@@ -5,10 +5,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const emailRegInput = document.getElementById("email-reg");
     const passwordRegInput = document.getElementById("password-reg");
     
-    const signInButton = document.getElementById("login-form");
-    const signUpButton = document.getElementById("register-form");
+    const signInForm = document.getElementById("login-form");
+    const signUpForm = document.getElementById("register-form");
 
-    signInButton.addEventListener("click", function(event) {
+    signInForm.addEventListener("submit", function(event) {
     
         clearErrors();
 
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    signUpButton.addEventListener("click", function(event) {
+    signUpForm.addEventListener("submit", function(event) {
 
         clearErrors();
 
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function showError(inputElement, message) {
         const errorSpan = document.createElement("span");
         errorSpan.classList.add("error");
-        errorSpan.style.color = "#f5953b";
+        errorSpan.style.color = "white";
         errorSpan.textContent = message;
         errorSpan.style.fontWeight = "bold";
         inputElement.parentNode.appendChild(errorSpan);

@@ -25,25 +25,27 @@
     <div class="form-box">
         
         
+        
         <div class="login-container" id="login">
             <div class="login-signup-word">
                 <header>Login</header>
             </div>
-            <div class="input-box">
-                <input type="text" id="email" name="email" class="input-field" placeholder="Email">
-                <i class="bx bx-user"></i>
-            </div>
-            <div class="input-box">
-                <input type="password" id="password" name="password" class="input-field" placeholder="Password">
-                <i class="bx bx-lock-alt"></i>
-            </div>
-            <div class="input-box">
-                <button class="submit" id="login-form" type="button">Sign In</button>
-            </div>
-            <div class="top">
-                <span>Don't have an account? <a href="#" onclick="register()">Sign Up</a></span>
-            </div>
-           
+            <form method="POST" action="userLogin.php">
+                <div class="input-box">
+                    <input type="text" id="email" name="email" class="input-field" placeholder="Email">
+                    <i class="bx bx-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" id="password" name="password" class="input-field" placeholder="Password">
+                    <i class="bx bx-lock-alt"></i>
+                </div>
+                <div class="input-box">
+                    <input class="submit" id="login-form" type="submit" value="Sign In">
+                </div>
+                <div class="top">
+                    <span>Don't have an account? <a href="#" onclick="register()">Sign Up</a></span>
+                </div>
+            </form>
         </div>
 
 
@@ -52,26 +54,29 @@
                 <header>Sign Up</header>
             </div>
             <div class="two-forms">
+                <form class="registerForm" method="POST" action="userRegistration.php">
                 <div class="input-box">
-                    <input type="text" class="input-field" placeholder="Firstname">
+                    <input type="text" class="input-field" name="first-name" placeholder="Firstname">
                     <i class="bx bx-user"></i>
                 </div>
                 <div class="input-box">
-                    <input type="text" class="input-field" placeholder="Lastname">
+                    <input type="text" class="input-field" name="last-name" placeholder="Lastname">
                     <i class="bx bx-user"></i>
                 </div>
-            </div>
-            <div class="input-box">
-                <input type="text" id="email-reg" class="input-field" placeholder="Email">
-                <i class="bx bx-envelope"></i>
-            </div>
-            <div class="input-box">
-                <input type="password" id="password-reg" class="input-field" placeholder="Password">
-                <i class="bx bx-lock-alt"></i>
-            </div>
-            <div class="input-box">
-                <button class="submit" id="register-form" type="button">Register</button>
-            </div>
+                </div>
+                <div class="input-box">
+                    <input type="text" id="email-reg" name="regEmail" class="input-field" placeholder="Email">
+                    <i class="bx bx-envelope"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" id="password-reg" name="regPassword" class="input-field" placeholder="Password">
+                    <i class="bx bx-lock-alt"></i>
+                </div>
+                <div class="input-box">
+                    <input class="submit" id="register-form" type="submit" value="Register">
+                </div>
+
+            </form>
 
             <div class="top">
                 <span>Have an account? <a href="#" onclick="login()">Login</a></span>

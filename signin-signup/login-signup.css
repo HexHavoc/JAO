@@ -43,11 +43,11 @@ body{
     margin-left: 12.3rem;
     color: #ee9542;
     font-size: 10rem;
-    font-weight: bolder;
+    font-weight: bold;
 }
 
 .nav-logo p:hover{
-    color: #3f4962;
+    color: #394157;
 }
 
 .link:hover, .active{
@@ -248,4 +248,10 @@ header{
   font-weight: bold;
   font-size: 3rem;
   margin-bottom: -1rem;
+}
+
+.registerForm{
+    width: 100%;
+    display: flex;
+    gap: 20px; 
 }
