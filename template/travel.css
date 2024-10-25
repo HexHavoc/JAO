@@ -30,7 +30,7 @@ body {
     font-size: 3.5rem;
     color: rgb(205, 5, 5);
     font-weight: 900;
-    margin-left: 6rem;
+    margin-left: 39rem;
     margin-bottom: 10rem;
     margin-top: -7.5rem;
 }
@@ -46,7 +46,7 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s ease;
-    margin: 1rem 0rem 2rem 30rem;
+    margin: 1rem 0rem 2rem 10rem;
 }
 
 #newBlogBtn:hover {
@@ -105,7 +105,6 @@ body {
     resize: vertical;
 }
 
-/* Image Upload */
 .image-upload-container {
     margin-bottom: 1rem;
 }
@@ -159,7 +158,7 @@ body {
 /* Blog Grid */
 #blogGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
 }
@@ -180,7 +179,7 @@ body {
 
 .blog-image {
     width: 100%;
-    height: 200px;
+    height: 300px;
     object-fit: cover;
 }
 
@@ -206,10 +205,7 @@ body {
 
 .blog-location{
     margin-left: -1rem;
-}
-
-.blog-author{
-    margin-left: 1.5rem;
+    font-size: 1rem;
 }
 
 /* Tags */
@@ -326,6 +322,11 @@ body {
 
 .empty-state p {
     color: #6b7280;
+}
+
+
+.blog-date{
+    font-size: 1rem;
 }
 
 /* Blog Metadata */
@@ -561,7 +562,7 @@ body {
   padding: 10px 0;
   position:absolute;
   top:0; right:0; 
-  margin: 2rem 1rem 1rem 0rem;
+  margin: 2rem 1rem 1rem 10rem;
 }
 
 .nav-bar header::after {
@@ -601,6 +602,7 @@ body {
   text-transform: uppercase;
   font-size: 1rem;
   font-weight: bold;
+  margin-right: 1rem;
 }
 
 .nav-bar nav a:hover {
@@ -621,7 +623,11 @@ body {
 .nav-bar nav a:hover::before {
   width: 100%;
 }
-
+.group-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 .group {
 display: flex;
 line-height: 28px;
@@ -674,6 +680,8 @@ fill: #9e9ea7;
 width: 1rem;
 height: 1rem;
 }
+
+
 
 
 .modal {
@@ -752,7 +760,7 @@ height: 1rem;
 
 .modal-image {
     width: 100%;
-    height: 300px;
+    height: 400px;
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 1.5rem;
@@ -921,7 +929,7 @@ body.modal-open {
     cursor: pointer;
     font-size: 0.9rem;
     transition: background-color 0.2s ease;
-    margin-left: 7rem;
+    margin-left: 19rem;
 }
 
 .delete-btn:hover {
@@ -930,4 +938,41 @@ body.modal-open {
 
 #modalAuthor,#modalLocation,#modalDate{
     font-size: 1rem;
+}
+
+.container {
+width: 100%;
+margin: 0;
+padding-left: 2rem;
+}
+
+#newBlogBtn {
+margin: 1rem 0 2rem 0;
+}
+
+#blogGrid {
+grid-template-columns: repeat(3, minmax(565px, 1fr));
+gap: 2rem;
+margin-top: 2rem;
+max-width: 1200px;
+}
+
+.group {
+margin: 1rem 0 4rem 0;
+max-width: 500px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+.container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+#blogGrid {
+    grid-template-columns: 1fr;
+}
+
+
+
 }

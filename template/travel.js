@@ -31,14 +31,15 @@ function getAllBlogs(searchQuery = '') {
 }
 
 function searchRenderTravel(searchQuery = '') {
-    const blogs = getAllBlogs(searchQuery);
     const loggedInUser = getLoggedInUser();
+    if(searchQuery.length >= 2 || searchQuery.length == 0){
+        const blogs = getAllBlogs(searchQuery);
 
     if (blogs.length === 0) {
         blogGrid.innerHTML = `
             <div class="empty-state">
-                <h2>No Blog Posts Yet</h2>
-                <p>Click the "New Blog Post" button to create your first post!</p>
+                <h2>${searchQuery ? 'No matching blog posts found' : 'No Blog Posts Yet'}</h2>
+                <p>${searchQuery ? 'Try a different search term' : 'Create your first blog post in Travel or Food sections!'}</p>
             </div>
         `;
         return;
@@ -134,6 +135,8 @@ function searchRenderTravel(searchQuery = '') {
             </div>
         </article>
     `).join('');
+    }
+    
 }
 
 function handleSearch(event) {
