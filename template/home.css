@@ -333,14 +333,14 @@ padding-left: 2.5rem;
 border: 2px solid transparent;
 border-radius: 8px;
 outline: none;
-background-color: #f3f3f4;
+background-color: rgb(229, 229, 229);
 color: #0d0c22;
 transition: all .3s ease-in;
 font-size: 20px;
 }
 
 .input::placeholder {
-color: rgb(118, 118, 118);
+color: rgb(71, 71, 71);
 }
 
 input:hover {
