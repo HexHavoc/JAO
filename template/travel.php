@@ -19,9 +19,9 @@ include "../profile/profileDisplay.php";
 
             <nav>
                 <ul>
-                <li><a href="#">Home</a></li>
+                <li><a href="home.php">Home</a></li>
                 <li><a href="#">Travel</a></li>
-                <li><a href="food.html">Food</a></li>
+                <li><a href="food.php">Food</a></li>
                 </ul>
             </nav>
             </div>

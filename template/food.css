@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
+
 /* Reset and base styles */
 * {
     margin: 0;
@@ -12,26 +15,11 @@ body {
     background-size: cover; 
     background-repeat: no-repeat;
     background-attachment: fixed;
-    overflow: hidden;
     color: #333;
+    Overflow-y:scroll;
     padding: 2rem;
 }
 
-.travel-button {
-position: absolute;
-top: 35px;
-right: 80px;
-padding: 12px 20px;
-background-color: #4CAF50;
-color: white;
-text-decoration: none;
-border-radius: 5px;
-font-family: Arial, sans-serif;
-}
-
-.travel-button:hover {
-    background-color: #45a049;
-}
 /* Container */
 .container {
     max-width: 1200px;
@@ -44,13 +32,13 @@ font-family: Arial, sans-serif;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
-    margin-left: 28rem;
-    font-weight: bold;
+    margin-left: 26rem;
 }
 
 .header h1 {
-    font-size: 2rem;
-    color: #14141e;
+    font-size: 2.5rem;
+    color: black;
+    font-weight: 900;
 }
 
 .header button{
@@ -359,33 +347,7 @@ font-family: Arial, sans-serif;
     border: none;
     padding: 0.25rem 0.75rem;
     border-radius: 0.375rem;
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.delete-btn:hover {
-    background-color: #dc2626;
-}
-
-
-/* Blog Metadata */
-.blog-metadata {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    color: #6b7280;
-    font-size: 0.875rem;
-}
-
-/* Delete Button */
-.delete-btn {
-    background-color: #ef4444;
-    color: white;
-    border: none;
-    padding: 0.25rem 0.75rem;
-    border-radius: 0.375rem;
+    margin-left: 17rem;
     font-size: 0.875rem;
     cursor: pointer;
     transition: background-color 0.2s ease;
@@ -503,4 +465,162 @@ font-family: Arial, sans-serif;
 
 .delete-comment-btn:hover {
     background-color: #dc2626;
+}
+
+.blog-author {
+    font-weight: 600;
+    color: #666;
+    font-size: 1rem;
+    margin-right: 1rem;
+}
+
+.comment-author {
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 0.5rem;
+}
+
+.login-prompt {
+    text-align: center;
+    margin: 1rem 0;
+    color: #666;
+}
+
+.login-prompt a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-prompt a:hover {
+    text-decoration: underline;
+}
+
+.like-btn {
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.like-btn.liked {
+    background: #ffebee;
+    border-color: #ff4081;
+}
+
+.like-btn:hover {
+    background: #f5f5f5;
+}
+
+.like-btn.liked:hover {
+    background: #fce4ec;
+}
+
+
+.blog-text-container {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.load-more-container {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.load-more-btn {
+    background: transparent;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.load-more-btn:hover {
+    background: #f0f8ff;
+    text-decoration: underline;
+}
+
+.full-content {
+    margin-top: 1rem;
+}
+
+.blog-text {
+    line-height: 1.6;
+    margin: 0;
+}
+
+.container {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.nav-bar header {
+  background: #55d6aa;
+  width: 20%;
+  padding: 10px 0;
+  position:absolute;
+  top:0; right:0; 
+  margin: 2rem 1rem 1rem 0rem;
+}
+
+.nav-bar header::after {
+  content: '';
+  display: table;   
+  clear: both;
+}
+
+.logo {
+  float: left;
+  padding: 10px 0;
+}
+
+.nav-bar nav {
+  float: right;
+  margin-right: 10px; /* To add a bit of space from the right edge */
+}
+
+.nav-bar nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+}
+
+.nav-bar nav li {
+  display: inline-block;
+  margin-left: 30px;
+  padding-top: 10px;
+  position: relative;
+}
+
+
+.nav-bar nav a {
+  color: black;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.nav-bar nav a:hover {
+    color: #444;
+}
+
+.nav-bar nav a::before {
+  content: '';
+  display: block;
+  height: 5px;
+  background-color: #444;
+  position: absolute;
+  top: 0;
+  width: 0%;
+  transition: all ease-in-out 250ms;
+}
+
+.nav-bar nav a:hover::before {
+  width: 100%;
 }
