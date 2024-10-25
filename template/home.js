@@ -32,6 +32,7 @@ function truncateText(text, maxLength) {
 
 function renderHomePageBlogs(searchQuery = '') {
     const blogs = getAllBlogs(searchQuery);
+    console.log(searchQuery);
 
 
     if (blogs.length === 0) {
