@@ -41,8 +41,8 @@ include "../profile/profileDisplay.php";
             <input type="text" id="title" placeholder="Blog Title" required>
             <textarea id="content" placeholder="Write your blog content here..." required></textarea>
             <div class="form-group">
-                <label for="foodSource">Recipe/Restaurant</label>
-                <input type="text" id="foodSource" required placeholder="Enter recipe name or restaurant">
+                <label for="foodSource">Restaurant</label>
+                <input type="text" id="foodSource" required placeholder="Enter restaurant name">
             </div>
             <div class="image-upload-container">
                 <input type="file" id="image" accept="image/*" required>
