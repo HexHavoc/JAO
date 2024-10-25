@@ -20,7 +20,7 @@
 	  	</div>
 	  	<?php } 
 	  	else { ?>
-	  		<a id = "login"  href="login.php"><i class="fa fa-sign-in"></i> Login</a>
+	  		<a id = "login"  href="../index.html"><i class="fa fa-sign-in"></i> Login</a>
 	  	<?php } ?>
 	  	<div class="user"><?php if (isset($_SESSION['username']))
 	  		echo '<span class="welcome">Welcome   </span>'.$_SESSION['username']; ?>
