@@ -62,6 +62,42 @@ include "../profile/profileDisplay.php";
         <div id="blogGrid"></div>
     </div>
 
+    <!-- Modal Container -->
+    <div id="blogModal" class="modal">
+        <!-- Modal Overlay -->
+        <div class="modal-overlay"></div>
+        
+        <!-- Modal Content -->
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h2>Blog Details</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <img id="modalImage" class="modal-image" src="" alt="">
+                <div class="modal-info">
+                    <h1 id="modalTitle" class="modal-title"></h1>
+                    <div class="modal-metadata">
+                        <span id="modalLocation"></span>
+                        <span id="modalAuthor"></span>
+                        <span id="modalDate"></span>
+                    </div>
+                    <p id="modalContent" class="modal-text"></p>
+                    <div id="modalTags" class="modal-tags"></div>
+                </div>
+                
+                <!-- Comments Section -->
+                <div class="modal-comments">
+                    <h3>Comments</h3>
+                    <div id="modalCommentsList" class="comments-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     
 
     <script src="travel.js"></script>

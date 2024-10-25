@@ -209,6 +209,10 @@ body {
     font-size: 1rem;
 }
 
+.blog-date{
+    margin-right: -1rem;
+}
+
 
 /* Tags */
 .tags {
@@ -467,7 +471,7 @@ body {
     font-weight: 600;
     color: #666;
     font-size: 1rem;
-    margin-right: 1rem;
+    margin-right: -1rem;
 }
 
 .comment-author {
@@ -672,4 +676,271 @@ left: 1rem;
 fill: #9e9ea7;
 width: 1rem;
 height: 1rem;
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+.modal.active {
+    display: block;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+}
+
+.modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1002;
+    overflow: hidden;
+}
+
+.modal-header {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: white;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close:hover {
+    background-color: #f5f5f5;
+}
+
+.modal-body {
+    padding: 1.5rem;
+    overflow-y: auto;
+    max-height: calc(90vh - 70px);
+}
+
+.modal-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.modal-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.modal-metadata {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.modal-text {
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.modal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.modal-tags .tag {
+    background-color: #f0f0f0;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+}
+
+.modal-comments {
+    border-top: 1px solid #eee;
+    padding-top: 1.5rem;
+}
+
+.modal-comments h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.comment {
+    background-color: #f8f8f8;
+    padding: 1rem;
+    border-radius: 6px;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.comment-author {
+    font-weight: 600;
+}
+
+.comment-date {
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.comment-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.like-btn, .delete-comment-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.like-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.delete-comment-btn {
+    color: #dc3545;
+}
+
+.delete-comment-btn:hover {
+    background-color: #ffebee;
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        max-height: 95vh;
+    }
+    
+    .modal-image {
+        height: 200px;
+    }
+    
+    .modal-metadata {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+.blog-actions-container {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.view-details-btn {
+    padding: 0.5rem 1rem;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.view-details-btn:hover {
+    background-color: #357abd;
+}
+
+.view-details-btn:active {
+    transform: translateY(1px);
+}
+
+/* Update existing blog-actions styles to work with the container */
+.blog-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.delete-btn {
+    padding: 0.5rem 1rem;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+    margin-left: 7rem;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+#modalLocation{
+    font-size: 1.5rem;
+}
+
+#modalDate{
+    margin-left: 10rem;
+    font-size: 1.5rem;
+}
+
+#modalAuthor{
+    margin-left: 6rem;
+    font-size: 1.5rem;
 }
