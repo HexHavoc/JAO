@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,18 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="login-signup.css">
-    <title>JAO | Login & Registration</title>
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="login-signup.css">
+    <link rel="stylesheet" href="signin-signup/login-signup.css">
     <title>JAO | Login & Registration</title>
 </head>
 <body>
@@ -34,20 +24,21 @@
 
     <div class="form-box">
         
+        
         <div class="login-container" id="login">
             <div class="login-signup-word">
                 <header>Login</header>
             </div>
             <div class="input-box">
-                <input type="text" class="input-field" placeholder="Username or Email">
+                <input type="text" id="email" name="email" class="input-field" placeholder="Email">
                 <i class="bx bx-user"></i>
             </div>
             <div class="input-box">
-                <input type="password" class="input-field" placeholder="Password">
+                <input type="password" id="password" name="password" class="input-field" placeholder="Password">
                 <i class="bx bx-lock-alt"></i>
             </div>
             <div class="input-box">
-                <button class="submit" type="button">Sign In</button>
+                <button class="submit" id="login-form" type="button">Sign In</button>
             </div>
             <div class="top">
                 <span>Don't have an account? <a href="#" onclick="register()">Sign Up</a></span>
@@ -71,15 +62,15 @@
                 </div>
             </div>
             <div class="input-box">
-                <input type="text" class="input-field" placeholder="Email">
+                <input type="text" id="email-reg" class="input-field" placeholder="Email">
                 <i class="bx bx-envelope"></i>
             </div>
             <div class="input-box">
-                <input type="password" class="input-field" placeholder="Password">
+                <input type="password" id="password-reg" class="input-field" placeholder="Password">
                 <i class="bx bx-lock-alt"></i>
             </div>
             <div class="input-box">
-                <input type="submit" class="submit" value="Register">
+                <button class="submit" id="register-form" type="button">Register</button>
             </div>
 
             <div class="top">
@@ -115,8 +106,6 @@
     function login() {
         x.style.left = "4px";
         y.style.right = "-520px";
-        a.className += " white-btn";
-        b.className = "btn";
         x.style.opacity = 1;
         y.style.opacity = 0;
     }
@@ -124,15 +113,13 @@
     function register() {
         x.style.left = "-510px";
         y.style.right = "5px";
-        a.className = "btn";
-        b.className += " white-btn";
         x.style.opacity = 0;
         y.style.opacity = 1;
     }
 
 </script>
 
-</body>
-</html>
+<script src="signin-signup/validation.js"></script>
+
 </body>
 </html>
