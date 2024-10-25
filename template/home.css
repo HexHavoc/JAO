@@ -1,0 +1,626 @@
+
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    background: url("../images/vehicle.jpg");
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #333;
+    Overflow-y:scroll;
+    padding: 2rem;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    margin-left: 26rem;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    color: orange;
+    font-weight: 900;
+}
+
+.header button{
+    font-size: 1.5rem;
+    font-weight: bold;
+
+}
+
+/* New Blog Button */
+#newBlogBtn {
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#newBlogBtn:hover {
+    background-color: #4338ca;
+}
+
+/* Blog Form */
+#blogForm {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    display: none;
+    animation: slideDown 0.3s ease;
+}
+
+#blogForm.active {
+    display: block;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Form Elements */
+#blogForm input[type="text"],
+#blogForm textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+#blogForm input[type="text"]:focus,
+#blogForm textarea:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+#blogForm textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* Image Upload */
+.image-upload-container {
+    margin-bottom: 1rem;
+}
+
+#image {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    border: 2px dashed #e2e8f0;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+#imagePreview {
+    border-radius: 0.5rem;
+    object-fit: cover;
+    width: 100%;
+    max-height: 300px;
+}
+
+/* Form Buttons */
+#blogForm button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#blogForm button[type="submit"] {
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    margin-right: 1rem;
+}
+
+#blogForm button[type="submit"]:hover {
+    background-color: #4338ca;
+}
+
+#cancelBtn {
+    background-color: white;
+    color: #4b5563;
+    border: 1px solid #e2e8f0;
+}
+
+#cancelBtn:hover {
+    background-color: #f3f4f6;
+}
+
+/* Blog Grid */
+#blogGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Blog Card */
+.blog-card {
+    background-color: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+.blog-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.blog-content {
+    padding: 1.5rem;
+}
+
+.blog-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+}
+
+.blog-text {
+    color: #4b5563;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Tags */
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag {
+    background-color: #f3f4f6;
+    color: #4b5563;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    #blogGrid {
+        grid-template-columns: 1fr;
+    }
+
+    #blogForm {
+        padding: 1rem;
+    }
+}
+
+/* Loading States */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Error States */
+.error {
+    border-color: #ef4444 !important;
+}
+
+.error-message {
+    color: #ef4444;
+    font-size: 0.875rem;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Add these new styles to your existing CSS */
+
+/* Notifications */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    color: white;
+    font-weight: 500;
+    animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s;
+    z-index: 1000;
+}
+
+.notification.success {
+    background-color: #10b981;
+}
+
+.notification.error {
+    background-color: #ef4444;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    grid-column: 1 / -1;
+}
+
+.empty-state h2 {
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+    color: #6b7280;
+}
+
+/* Blog Metadata */
+.blog-metadata {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+/* Delete Button */
+.delete-btn {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.375rem;
+    margin-left: 17rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.delete-btn:hover {
+    background-color: #dc2626;
+}
+
+/* Add these styles to your CSS file (template.css) */
+
+/* Comments Section */
+.comments-section {
+    margin-top: 2rem;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 1rem;
+}
+
+.comments-section h3 {
+    font-size: 1.1rem;
+    color: #2d3748;
+    margin-bottom: 1rem;
+}
+
+/* Comment Form */
+.comment-form {
+    margin-bottom: 1.5rem;
+}
+
+.comment-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    min-height: 80px;
+    resize: vertical;
+}
+
+.comment-input:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.comment-btn {
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.comment-btn:hover {
+    background-color: #4338ca;
+}
+
+/* Comments List */
+.comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.comment {
+    background-color: #f8fafc;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.comment-text {
+    color: #4b5563;
+    margin-bottom: 0.5rem;
+}
+
+.comment-metadata {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.comment-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.like-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+    transition: background-color 0.2s ease;
+}
+
+.like-btn:hover {
+    background-color: #fee2e2;
+}
+
+.delete-comment-btn {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.delete-comment-btn:hover {
+    background-color: #dc2626;
+}
+
+.blog-author {
+    font-weight: 600;
+    color: #666;
+    font-size: 1rem;
+    margin-right: 1rem;
+}
+
+.comment-author {
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 0.5rem;
+}
+
+.login-prompt {
+    text-align: center;
+    margin: 1rem 0;
+    color: #666;
+}
+
+.login-prompt a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-prompt a:hover {
+    text-decoration: underline;
+}
+
+.like-btn {
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.like-btn.liked {
+    background: #ffebee;
+    border-color: #ff4081;
+}
+
+.like-btn:hover {
+    background: #f5f5f5;
+}
+
+.like-btn.liked:hover {
+    background: #fce4ec;
+}
+
+
+.blog-text-container {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.load-more-container {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.load-more-btn {
+    background: transparent;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.load-more-btn:hover {
+    background: #f0f8ff;
+    text-decoration: underline;
+}
+
+.full-content {
+    margin-top: 1rem;
+}
+
+.blog-text {
+    line-height: 1.6;
+    margin: 0;
+}
+
+.container {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.nav-bar header {
+  background: #55d6aa;
+  width: 20%;
+  padding: 10px 0;
+  position:absolute;
+  top:0; right:0; 
+  margin: 2rem 1rem 1rem 0rem;
+}
+
+.nav-bar header::after {
+  content: '';
+  display: table;   
+  clear: both;
+}
+
+.logo {
+  float: left;
+  padding: 10px 0;
+}
+
+.nav-bar nav {
+  float: right;
+  margin-right: 10px; /* To add a bit of space from the right edge */
+}
+
+.nav-bar nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+}
+
+.nav-bar nav li {
+  display: inline-block;
+  margin-left: 30px;
+  padding-top: 10px;
+  position: relative;
+}
+
+
+.nav-bar nav a {
+  color: black;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.nav-bar nav a:hover {
+    color: #444;
+}
+
+.nav-bar nav a::before {
+  content: '';
+  display: block;
+  height: 5px;
+  background-color: #444;
+  position: absolute;
+  top: 0;
+  width: 0%;
+  transition: all ease-in-out 250ms;
+}
+
+.nav-bar nav a:hover::before {
+  width: 100%;
+}
