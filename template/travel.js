@@ -5,6 +5,7 @@ const cancelBtn = document.getElementById('cancelBtn');
 const blogGrid = document.getElementById('blogGrid');
 const imageInput = document.getElementById('image');
 const imagePreview = document.getElementById('imagePreview');
+const CONTENT_PREVIEW_LENGTH = 150;
 
 // State management with localStorage
 const STORAGE_KEY = 'travelBlogPosts';
@@ -263,6 +264,13 @@ function showNotificationError(message, type = 'error') {
     }, 3000);
 }
 
+function truncateText(text, maxLength) {
+    if (text.length <= maxLength) return text;
+    return text.slice(0, maxLength).trim() + '...';
+}
+
+
+// Update the renderBlogs function to include the load more functionality
 function renderBlogs() {
     if (blogs.length === 0) {
         blogGrid.innerHTML = `
@@ -285,7 +293,33 @@ function renderBlogs() {
                     <span class="blog-author">Posted by: ${blog.uploadedBy}</span>
                     <span class="blog-date">${new Date(blog.date).toLocaleDateString()}</span>
                 </div>
-                <p class="blog-text">${blog.content}</p>
+                
+                <div class="blog-text-container" id="blogContent_${blog.id}">
+                    <p class="blog-text">${truncateText(blog.content, CONTENT_PREVIEW_LENGTH)}</p>
+                    ${blog.content.length > CONTENT_PREVIEW_LENGTH ? `
+                        <div class="load-more-container">
+                            <button 
+                                onclick="toggleContent(${blog.id})" 
+                                class="load-more-btn" 
+                                id="loadMoreBtn_${blog.id}"
+                            >
+                                Read More
+                            </button>
+                        </div>
+                        <div class="full-content" id="fullContent_${blog.id}" style="display: none;">
+                            <p class="blog-text">${blog.content}</p>
+                            <div class="load-more-container">
+                                <button 
+                                    onclick="toggleContent(${blog.id})" 
+                                    class="load-more-btn"
+                                >
+                                    Show Less
+                                </button>
+                            </div>
+                        </div>
+                    ` : ''}
+                </div>
+
                 ${blog.uploadedBy === loggedInUser ? `
                     <div class="blog-actions">
                         <button onclick="deleteBlog(${blog.id})" class="delete-btn">
@@ -356,7 +390,28 @@ function renderBlogs() {
     `).join('');
 }
 
-
+// Add the toggle content function
+function toggleContent(blogId) {
+    const contentContainer = document.getElementById(`blogContent_${blogId}`);
+    const fullContent = document.getElementById(`fullContent_${blogId}`);
+    const loadMoreBtn = document.getElementById(`loadMoreBtn_${blogId}`);
+    
+    if (fullContent.style.display === 'none') {
+        // Show full content
+        loadMoreBtn.style.display = 'none';
+        fullContent.style.display = 'block';
+        
+        // Smooth scroll to the full content
+        fullContent.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        // Show preview
+        loadMoreBtn.style.display = 'block';
+        fullContent.style.display = 'none';
+        
+        // Smooth scroll to the top of the blog post
+        contentContainer.scrollIntoView({ behavior: 'smooth' });
+    }
+}
 
 // Initialize blogs on page load
 if (checkLoginStatus()) {

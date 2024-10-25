@@ -482,6 +482,7 @@ body {
 .blog-author {
     font-weight: 600;
     color: #666;
+    font-size: 1rem;
     margin-right: 1rem;
 }
 
@@ -526,4 +527,40 @@ body {
 
 .like-btn.liked:hover {
     background: #fce4ec;
+}
+
+
+.blog-text-container {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.load-more-container {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.load-more-btn {
+    background: transparent;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.load-more-btn:hover {
+    background: #f0f8ff;
+    text-decoration: underline;
+}
+
+.full-content {
+    margin-top: 1rem;
+}
+
+.blog-text {
+    line-height: 1.6;
+    margin: 0;
 }
