@@ -1,8 +1,11 @@
 
+<?php
+include "../profile/profileDisplay.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include '../profileDisplay.php'; ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JAO | Travel Blog</title>
@@ -15,7 +18,6 @@
             <button id="newBlogBtn">New Blog Post</button>
         </header>
 
-        <a href="food.html"><button class="food-btn">FOOD</button></a>
 
         <form id="blogForm">
             <input type="text" id="title" placeholder="Blog Title" required>
