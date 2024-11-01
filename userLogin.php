@@ -34,7 +34,7 @@ try {
             $_SESSION['logged_in'] = true;
             
             // Return success response
-            header('Location: template/travel.php');
+            header('Location: template/home.php');
         } else {
             throw new Exception('Invalid credentials');
         }
