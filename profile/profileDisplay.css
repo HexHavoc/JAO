@@ -1,0 +1,72 @@
+* {box-sizing: border-box;
+  margin: 0;
+  padding:0;
+}
+body {
+  margin: 0;
+  font-family: Helvetica, sans-serif;
+}
+h1, h2 {
+  text-align: center;
+  margin-top: 20px;
+}
+.topmenu {
+  margin-bottom: 4rem;
+  width: 20%;
+  overflow: hidden; 
+  background-color: #0a68b0;
+}
+.topmenu a {
+  float: left;
+  display: block;
+  font-size: 17px;
+  color: #fff;
+  padding: 17px 20px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.topmenu .menubar {
+  font-weight: bold;
+  padding-left: 20px;
+}
+
+.topmenu a.active {
+  background-color: #4e69cc;
+  color: #000;
+}
+.topmenu a:hover {
+  background-color: #4e69cc;
+  color: black;
+}
+@media  screen and (max-width: 500px) {
+  .topmenu a {
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+    display: block;
+    float: none; 
+  }
+}
+.err-msg{
+  text-align: center;
+  color:red;
+}
+.check {
+  margin: 5px 0px;
+  width: 6%;
+  height: 20px;
+  }
+.user{
+  float: right;
+  margin-right: 1.3rem;
+  padding: 17px 25px;
+  color: #fff;
+}
+.welcome{
+  color: #c6f606;
+}
+.logout{
+    float: right;
+}
