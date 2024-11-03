@@ -44,6 +44,7 @@ function renderHomePageBlogs(searchQuery = '') {
         return;
     }
 
+    // Inside the renderHomePageBlogs function, update the blog-card template
     blogGrid.innerHTML = blogs.map(blog => `
         <article class="blog-card">
             <img src="${blog.imageUrl}" alt="${blog.title}" class="blog-image">
@@ -51,7 +52,7 @@ function renderHomePageBlogs(searchQuery = '') {
                 <h2 class="blog-title">${blog.title}</h2>
                 <div class="blog-metadata">
                     <span class="blog-category">${blog.uploadedBy} | 
-                        ${blog.tags.includes('travel') ? 'Travel' : 'Food'} Blog
+                        ${blog.location ? 'Travel' : 'Food'} Blog
                     </span>
                     <span class="blog-date">${new Date(blog.date).toLocaleDateString()}</span>
                 </div>
@@ -66,8 +67,8 @@ function renderHomePageBlogs(searchQuery = '') {
                 
                 <div class="blog-actions">
                     <a href="#" class="read-more-btn" 
-                       data-category="${blog.tags.includes('travel') ? 'travel' : 'food'}"
-                       onclick="navigateToBlogSection(event)">
+                    data-category="${blog.location ? 'travel' : 'food'}"
+                    onclick="navigateToBlogSection(event)">
                         Read Full Post
                     </a>
                 </div>
