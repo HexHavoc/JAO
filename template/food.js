@@ -45,7 +45,7 @@ function getAllBlogs(searchQuery = '') {
     return combinedBlogs;
 }
 
-function renderHomePageBlogs(searchQuery = '') {
+function searchRenderFood(searchQuery = '') {
     const blogs = getAllBlogs(searchQuery);
     const loggedInUser = getLoggedInUser();
 
@@ -64,8 +64,9 @@ function renderHomePageBlogs(searchQuery = '') {
         <article class="blog-card">
             <img src="${blog.imageUrl}" alt="${blog.title}" class="blog-image">
             <div class="blog-content">
-                <h2 class="blog-title">${blog.title}</h2>
+               <h2 class="blog-title">${blog.title}</h2>
                 <div class="blog-metadata">
+                    <span class="blog-food-source">🍽️ ${blog.foodSource}</span>
                     <span class="blog-author">Posted by: ${blog.uploadedBy}</span>
                     <span class="blog-date">${new Date(blog.date).toLocaleDateString()}</span>
                 </div>
@@ -168,7 +169,7 @@ function renderHomePageBlogs(searchQuery = '') {
 
 function handleSearch(event) {
     const searchQuery = event.target.value.trim();
-    renderHomePageBlogs(searchQuery);
+    searchRenderFood(searchQuery);
 }
 
 function navigateToBlogSection(event) {
@@ -185,7 +186,7 @@ function navigateToBlogSection(event) {
 
 // Initialize blogs and search functionality on page load
 document.addEventListener('DOMContentLoaded', () => {
-    renderHomePageBlogs();
+    searchRenderFood();
     
     // Add search input event listener
     if (searchInput) {
