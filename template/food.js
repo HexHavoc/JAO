@@ -280,12 +280,14 @@ async function handleSubmit(e) {
         return;
     }
 
+    // In handleSubmit function, modify the blogData object
     const blogData = createBlogPost({
         id: Date.now(),
         title: document.getElementById('title').value,
         content: document.getElementById('content').value,
         imageUrl: imagePreview.src,
-        uploadedBy: username, // Add logged-in username to blog data
+        uploadedBy: username,
+        foodSource: document.getElementById('foodSource').value, // Add this line
         tags: document.getElementById('tags').value
             .split(',')
             .map(tag => tag.trim())
@@ -459,8 +461,9 @@ function renderBlogs() {
         <article class="blog-card">
             <img src="${blog.imageUrl}" alt="${blog.title}" class="blog-image">
             <div class="blog-content">
-                <h2 class="blog-title">${blog.title}</h2>
+               <h2 class="blog-title">${blog.title}</h2>
                 <div class="blog-metadata">
+                    <span class="blog-food-source">🍽️ ${blog.foodSource}</span>
                     <span class="blog-author">Posted by: ${blog.uploadedBy}</span>
                     <span class="blog-date">${new Date(blog.date).toLocaleDateString()}</span>
                 </div>
