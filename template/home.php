@@ -12,7 +12,11 @@
     <link rel="stylesheet" href="home.css">
 </head>
 <body>
+    <div class="header">
+            <h1>JAO HOME PAGE</h1>
+    </div>
     <div class="nav-bar">
+        
         <header>
             <div class="container">
             <h1 class="logo"></h1>
@@ -26,6 +30,14 @@
             </nav>
             </div>
         </header>
+    </div>
+    <div class="search-container">
+    <input 
+        type="text" 
+        id="blogSearch" 
+        placeholder="Search blog posts..." 
+        class="search-input"
+    >
     </div>
     <div id="blogGrid" class="blog-grid"></div>
     <script src="home.js"></script>
