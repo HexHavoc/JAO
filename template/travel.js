@@ -277,12 +277,14 @@ async function handleSubmit(e) {
         return;
     }
 
+    // In handleSubmit function, modify the blogData object
     const blogData = createBlogPost({
         id: Date.now(),
         title: document.getElementById('title').value,
         content: document.getElementById('content').value,
         imageUrl: imagePreview.src,
-        uploadedBy: username, // Add logged-in username to blog data
+        uploadedBy: username,
+        location: document.getElementById('location').value, // Add this line
         tags: document.getElementById('tags').value
             .split(',')
             .map(tag => tag.trim())
@@ -456,10 +458,10 @@ function renderBlogs() {
             <div class="blog-content">
                 <h2 class="blog-title">${blog.title}</h2>
                 <div class="blog-metadata">
+                    <span class="blog-location">📍 ${blog.location}</span>  // Add this line
                     <span class="blog-author">Posted by: ${blog.uploadedBy}</span>
                     <span class="blog-date">${new Date(blog.date).toLocaleDateString()}</span>
                 </div>
-                
                 <div class="blog-text-container" id="blogContent_${blog.id}">
                     <p class="blog-text">${truncateText(blog.content, CONTENT_PREVIEW_LENGTH)}</p>
                     ${blog.content.length > CONTENT_PREVIEW_LENGTH ? `
@@ -498,6 +500,7 @@ function renderBlogs() {
                         <span class="tag">${tag}</span>
                     `).join('')}
                 </div>
+                
                 
                 <!-- Comments Section -->
                 <div class="comments-section">

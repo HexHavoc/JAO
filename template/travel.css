@@ -644,14 +644,14 @@ font-size: 20px;
 color: rgb(55, 55, 55);
 }
 
-input:hover {
+.input:hover {
 outline: none;
 border-color: rgb(135, 241, 135);
 background-color: #fff;
 box-shadow: 0 0 0 4px rgb(172, 244, 172);
 }
 
-input:focus{
+.input:focus{
     zoom: 1.1;
     font-size: 23px;
     box-shadow: 0 0 0 4px coral;
