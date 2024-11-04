@@ -51,7 +51,7 @@ function searchRenderTravel(searchQuery = '') {
             <div class="blog-content">
                 <h2 class="blog-title">${blog.title}</h2>
                 <div class="blog-metadata">
-                    <span class="blog-location">📍 ${blog.location}</span>
+                    <span class="blog-location">📍${blog.location}</span>
                     <span class="blog-author">Posted by: ${blog.uploadedBy}</span>
                     <span class="blog-date">${new Date(blog.date).toLocaleDateString()}</span>
                 </div>
