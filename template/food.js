@@ -30,10 +30,10 @@ const searchInput = document.getElementById('blogSearch');
 
 function getAllBlogs(searchQuery = '') {
     // Retrieve blogs from both travel and food localStorage
-    const travelBlogs = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    const foodBlogs = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
     
     // Combine and filter blogs based on search query
-    const combinedBlogs = [...travelBlogs]
+    const combinedBlogs = [...foodBlogs]
         .filter(blog => {
             if (!searchQuery) return true;
             return blog.title.toLowerCase().includes(searchQuery.toLowerCase());
@@ -64,46 +64,31 @@ function searchRenderFood(searchQuery = '') {
         <article class="blog-card">
             <img src="${blog.imageUrl}" alt="${blog.title}" class="blog-image">
             <div class="blog-content">
-               <h2 class="blog-title">${blog.title}</h2>
+                <h2 class="blog-title">${blog.title}</h2>
                 <div class="blog-metadata">
-                    <span class="blog-food-source">🍽️ ${blog.foodSource}</span>
+                    <span class="blog-foodSource">🍽️ ${blog.foodSource}</span>
                     <span class="blog-author">Posted by: ${blog.uploadedBy}</span>
                     <span class="blog-date">${new Date(blog.date).toLocaleDateString()}</span>
                 </div>
                 
                 <div class="blog-text-container" id="blogContent_${blog.id}">
                     <p class="blog-text">${truncateText(blog.content, CONTENT_PREVIEW_LENGTH)}</p>
-                    ${blog.content.length > CONTENT_PREVIEW_LENGTH ? `
-                        <div class="load-more-container">
-                            <button 
-                                onclick="toggleContent(${blog.id})" 
-                                class="load-more-btn" 
-                                id="loadMoreBtn_${blog.id}"
-                            >
-                                Read More
-                            </button>
-                        </div>
-                        <div class="full-content" id="fullContent_${blog.id}" style="display: none;">
-                            <p class="blog-text">${blog.content}</p>
-                            <div class="load-more-container">
-                                <button 
-                                    onclick="toggleContent(${blog.id})" 
-                                    class="load-more-btn"
-                                >
-                                    Show Less
-                                </button>
-                            </div>
-                        </div>
-                    ` : ''}
                 </div>
 
-                ${blog.uploadedBy === loggedInUser ? `
-                    <div class="blog-actions">
+                <div class="blog-actions-container">
+                    <button 
+                        onclick="toggleContent(${blog.id})" 
+                        class="view-details-btn"
+                    >
+                        View Details
+                    </button>
+                    ${blog.uploadedBy === loggedInUser ? `
                         <button onclick="deleteBlog(${blog.id})" class="delete-btn">
                             Delete
                         </button>
-                    </div>
-                ` : ''}
+                    ` : ''}
+                </div>
+
                 <div class="tags">
                     ${blog.tags.map(tag => `
                         <span class="tag">${tag}</span>
@@ -462,46 +447,31 @@ function renderBlogs() {
         <article class="blog-card">
             <img src="${blog.imageUrl}" alt="${blog.title}" class="blog-image">
             <div class="blog-content">
-               <h2 class="blog-title">${blog.title}</h2>
+                <h2 class="blog-title">${blog.title}</h2>
                 <div class="blog-metadata">
-                    <span class="blog-food-source">🍽️ ${blog.foodSource}</span>
+                    <span class="blog-foodSource">🍽️ ${blog.foodSource}</span>
                     <span class="blog-author">Posted by: ${blog.uploadedBy}</span>
                     <span class="blog-date">${new Date(blog.date).toLocaleDateString()}</span>
                 </div>
                 
                 <div class="blog-text-container" id="blogContent_${blog.id}">
                     <p class="blog-text">${truncateText(blog.content, CONTENT_PREVIEW_LENGTH)}</p>
-                    ${blog.content.length > CONTENT_PREVIEW_LENGTH ? `
-                        <div class="load-more-container">
-                            <button 
-                                onclick="toggleContent(${blog.id})" 
-                                class="load-more-btn" 
-                                id="loadMoreBtn_${blog.id}"
-                            >
-                                Read More
-                            </button>
-                        </div>
-                        <div class="full-content" id="fullContent_${blog.id}" style="display: none;">
-                            <p class="blog-text">${blog.content}</p>
-                            <div class="load-more-container">
-                                <button 
-                                    onclick="toggleContent(${blog.id})" 
-                                    class="load-more-btn"
-                                >
-                                    Show Less
-                                </button>
-                            </div>
-                        </div>
-                    ` : ''}
                 </div>
 
-                ${blog.uploadedBy === loggedInUser ? `
-                    <div class="blog-actions">
+                <div class="blog-actions-container">
+                    <button 
+                        onclick="toggleContent(${blog.id})" 
+                        class="view-details-btn"
+                    >
+                        View Details
+                    </button>
+                    ${blog.uploadedBy === loggedInUser ? `
                         <button onclick="deleteBlog(${blog.id})" class="delete-btn">
                             Delete
                         </button>
-                    </div>
-                ` : ''}
+                    ` : ''}
+                </div>
+
                 <div class="tags">
                     ${blog.tags.map(tag => `
                         <span class="tag">${tag}</span>
@@ -565,28 +535,82 @@ function renderBlogs() {
     `).join('');
 }
 
-// Add the toggle content function
 function toggleContent(blogId) {
-    const contentContainer = document.getElementById(`blogContent_${blogId}`);
-    const fullContent = document.getElementById(`fullContent_${blogId}`);
-    const loadMoreBtn = document.getElementById(`loadMoreBtn_${blogId}`);
-    
-    if (fullContent.style.display === 'none') {
-        // Show full content
-        loadMoreBtn.style.display = 'none';
-        fullContent.style.display = 'block';
+    const blog = blogs.find(blog => blog.id === blogId);
+    if (blog) {
+        // Get modal elements
+        const modal = document.getElementById('blogModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalfoodSource = document.getElementById('modalfoodSource');
+        const modalAuthor = document.getElementById('modalAuthor');
+        const modalDate = document.getElementById('modalDate');
+        const modalContent = document.getElementById('modalContent');
+        const modalTags = document.getElementById('modalTags');
+        const modalCommentsList = document.getElementById('modalCommentsList');
+
+        // Populate modal content
+        modalImage.src = blog.imageUrl;
+        modalImage.alt = blog.title;
+        modalTitle.textContent = blog.title;
+        modalfoodSource.innerHTML = `<span>🍽️ ${blog.foodSource}</span>`;
+        modalAuthor.textContent = `Posted by: ${blog.uploadedBy}`;
+        modalDate.textContent = new Date(blog.date).toLocaleDateString();
+        modalContent.textContent = blog.content;
         
-        // Smooth scroll to the full content
-        fullContent.scrollIntoView({ behavior: 'smooth' });
-    } else {
-        // Show preview
-        loadMoreBtn.style.display = 'block';
-        fullContent.style.display = 'none';
+        // Render tags
+        modalTags.innerHTML = blog.tags.map(tag => 
+            `<span class="tag">${tag}</span>`
+        ).join('');
         
-        // Smooth scroll to the top of the blog post
-        contentContainer.scrollIntoView({ behavior: 'smooth' });
+        // Render comments
+        modalCommentsList.innerHTML = blog.comments.map(comment => `
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-author">${comment.author}</span>
+                    <span class="comment-date">${new Date(comment.date).toLocaleDateString()}</span>
+                </div>
+                <p>${comment.text}</p>
+                <div class="comment-actions">
+                    <button 
+                        onclick="likeComment(${blog.id}, ${comment.id})"
+                        class="like-btn ${hasUserLikedComment(blog.id, comment.id) ? 'liked' : ''}"
+                    >
+                        ${hasUserLikedComment(blog.id, comment.id) ? '❤️' : '🤍'} ${comment.likes}
+                    </button>
+                    ${comment.author === getLoggedInUser() ? `
+                        <button 
+                            onclick="deleteComment(${blog.id}, ${comment.id})"
+                            class="delete-comment-btn"
+                        >
+                            Delete
+                        </button>
+                    ` : ''}
+                </div>
+            </div>
+        `).join('');
+
+        // Show modal
+        modal.classList.add('active');
+        document.body.classList.add('modal-open');
     }
 }
+
+// Add event listeners for modal close
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('blogModal');
+    const closeBtn = modal.querySelector('.modal-close');
+    const overlay = modal.querySelector('.modal-overlay');
+
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', closeModal);
+});
+
 
 // Initialize blogs on page load
 if (checkLoginStatus()) {
