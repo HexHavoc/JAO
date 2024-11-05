@@ -28,63 +28,7 @@ $result = $mysqli->query($sql);
 <html>
 <head>
     <title>Registered Users</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-
-        .user-list {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .user-list th, 
-        .user-list td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .user-list th {
-            background-color: #f4f4f4;
-            font-weight: bold;
-        }
-
-        .user-list tr:hover {
-            background-color: #f9f9f9;
-        }
-
-        .delete-btn {
-            background-color: #ff4444;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .delete-btn:hover {
-            background-color: #cc0000;
-        }
-
-        .header {
-            background-color: #333;
-            color: white;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-        }
-
-        .no-users {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-        }
-    </style>
+    <link rel="stylesheet" href="admin.css">
 </head>
 <body>
     <div class="header">
