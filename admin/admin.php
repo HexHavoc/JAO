@@ -53,7 +53,7 @@ $result = $mysqli->query($sql);
                     echo "<td>
                             <form method='POST' style='display: inline;' onsubmit='return confirm(\"Are you sure you want to delete this user?\");'>
                                 <input type='hidden' name='user_id' value='" . $row["user_id"] . "'>
-                                <button type='submit' name='delete' class='delete-btn'>Delete</button>
+                                <button type='submit' onclick=deleteUserBlog() name='delete' class='delete-btn'>Delete</button>
                             </form>
                           </td>";
                     echo "</tr>";
@@ -69,5 +69,6 @@ $result = $mysqli->query($sql);
     // Close connection
     $mysqli->close();
     ?>
+    <script src='admin.js'></script>
 </body>
 </html>
