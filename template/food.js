@@ -407,7 +407,7 @@ function showNotificationSuccess(message, type = 'success') {
     // Remove notification after 3 seconds
     setTimeout(() => {
         notification.remove();
-    }, 3000);
+    }, 1500);
 }
 
 function showNotificationError(message, type = 'error') {
@@ -420,7 +420,7 @@ function showNotificationError(message, type = 'error') {
     // Remove notification after 3 seconds
     setTimeout(() => {
         notification.remove();
-    }, 3000);
+    }, 1500);
 }
 
 function truncateText(text, maxLength) {
