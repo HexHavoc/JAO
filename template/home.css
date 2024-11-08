@@ -71,6 +71,7 @@ body {
 /* Blog Grid */
 #blogGrid {
     display: grid;
+    
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
@@ -361,12 +362,14 @@ input:focus{
     border-color: coral;
 }
 
-
-
 .icon {
 position: absolute;
 left: 1rem;
 fill: #9e9ea7;
 width: 1rem;
 height: 1rem;
+}
+
+.blog-actions a{
+    margin-left: 11rem;
 }
