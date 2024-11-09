@@ -11,10 +11,11 @@
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1.6;
-    background: url("../images/food.webp");
+    background: url("../images/biriyani.jpg");
     background-size: cover; 
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-position: bottom;
     color: #333;
     Overflow-y:scroll;
     padding: 2rem;
