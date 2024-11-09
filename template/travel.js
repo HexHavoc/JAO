@@ -239,7 +239,7 @@ function handleImageSelect(e) {
     }
 }
 
-function createBlogPost(blogData) {
+function createBlogPost(blogData){
     return {
         ...blogData,
         comments: [] // Initialize empty comments array for each blog
