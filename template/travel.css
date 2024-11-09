@@ -563,6 +563,7 @@ body {
   position:absolute;
   top:0; right:0; 
   margin: 2rem 1rem 1rem 10rem;
+  border-radius: 2rem;
 }
 
 .nav-bar header::after {
